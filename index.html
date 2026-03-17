@@ -454,9 +454,9 @@
                         <div><strong>✓ Reduce mistakes:</strong> keep contracts, intake, kickoff prep, and handoff organized in one flow</div>
                     </div>
                     <div class="cta-row">
-                        <a href="#early-access" class="cta-button">Lock In Founding Pricing →</a>
+                        <a href="./client-onboarding-kit.zip" class="cta-button" download>Download the Founding Edition →</a>
                     </div>
-                    <p class="cta-note">Founding Edition: <strong>$49</strong> before public launch · future price <strong>$99</strong></p>
+                    <p class="cta-note">Test download available now · Founding Edition preview bundle</p>
                 </div>
                 <div class="preview-card">
                     <div class="preview-top">
@@ -599,73 +599,19 @@
         </section>
 
         <section class="price-box" id="early-access">
-            <h2>Lock in founding-user pricing</h2>
-            <p>Join the early-access list for Client Onboarding Kit and lock in the Founding Edition price. This gives us a strong signal that the offer resonates before public launch.</p>
+            <h2>Test the customer download flow</h2>
+            <p>For testing, you can download the current Founding Edition bundle directly from this page and review the exact customer deliverable.</p>
             <div class="price">$49 <small>launch price · future price $99</small></div>
-            <form class="waitlist-form native-signup-form" onsubmit="return atlasSignupSubmit(this)">
-                <input type="hidden" name="experiment" value="client-onboarding-kit">
-                <input type="hidden" name="source" value="client-onboarding-kit">
-                <input type="hidden" name="pricing" value="$49-launch-$99-future">
-                <input type="hidden" name="cta" value="early-access">
-                <input type="hidden" name="page_url" value="">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Get Early Access</button>
-            </form>
-            <p class="form-message" aria-live="polite"></p>
-            <p class="privacy">No spam. Just launch details and early-access updates.</p>
+            <div class="cta-row" style="justify-content:center; margin-top:1.2rem;">
+                <a href="./client-onboarding-kit.zip" class="cta-button" download>Download Client Onboarding Kit (.zip)</a>
+            </div>
+            <p class="form-message" aria-live="polite">This is the current customer bundle for walkthrough/testing.</p>
+            <p class="privacy">Test delivery only — checkout can be added after we verify the bundle experience.</p>
         </section>
     </div>
 
     <footer><div class="container"><p>© 2026 Client Onboarding Kit — built for service businesses that want a cleaner start.</p></div></footer>
 
-<script>
-(function(){
-  function randomId(){ return 'signup_target_' + Math.random().toString(36).slice(2); }
-  window.atlasSignupMap = window.atlasSignupMap || {};
-  window.atlasSignupInit = function(form){
-    if (!form || form.dataset.signupReady === '1') return;
-    form.dataset.signupReady = '1';
-    const iframeName = randomId();
-    const iframe = document.createElement('iframe');
-    iframe.name = iframeName;
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    form.target = iframeName;
-    form.action = 'https://atlas-signups-worker.business-risc.workers.dev/api/signup';
-    form.method = 'POST';
-    const pageField = form.querySelector('input[name="page_url"]');
-    if (pageField) pageField.value = window.location.href;
-    window.atlasSignupMap[iframeName] = form;
-  };
-  window.atlasSignupSubmit = function(form){
-    window.atlasSignupInit(form);
-    const msg = form.parentElement.querySelector('.form-message') || form.nextElementSibling;
-    const button = form.querySelector('button[type="submit"]');
-    if (button) { button.disabled = true; button.textContent = 'Submitting...'; }
-    if (msg) { msg.textContent = 'Submitting...'; msg.style.color = '#94a3b8'; }
-    return true;
-  };
-  window.addEventListener('message', function(e){
-    if (!e.data || (e.data.type !== 'atlas-signup-success' && e.data.type !== 'atlas-signup-error')) return;
-    const frames = Object.keys(window.atlasSignupMap || {});
-    frames.forEach(function(name){
-      const form = window.atlasSignupMap[name];
-      if (!form) return;
-      const msg = form.parentElement.querySelector('.form-message') || form.nextElementSibling;
-      const button = form.querySelector('button[type="submit"]');
-      if (e.data.type === 'atlas-signup-success') {
-        form.reset();
-        const pageField = form.querySelector('input[name="page_url"]');
-        if (pageField) pageField.value = window.location.href;
-        if (msg) { msg.textContent = "Thanks — you're on the early-access list."; msg.style.color = '#86efac'; }
-      } else {
-        if (msg) { msg.textContent = 'Something went wrong. Please try again.'; msg.style.color = '#fca5a5'; }
-      }
-      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
-    });
-  });
-  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
-})();
-</script>
+
 </body>
 </html>
