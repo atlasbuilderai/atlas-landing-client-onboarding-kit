@@ -17,13 +17,17 @@
             --success: #16a34a;
             --border: #e2e8f0;
             --soft: #faf5ff;
+            --danger: #991b1b;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background: var(--bg);
+            background:
+                radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 25%),
+                radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.06), transparent 28%),
+                var(--bg);
         }
         .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
         .hero {
@@ -49,7 +53,7 @@
             letter-spacing: 0.06em;
         }
         h1 {
-            font-size: clamp(2.2rem, 5vw, 3.7rem);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
             font-weight: 800;
             line-height: 1.04;
             color: var(--primary);
@@ -78,33 +82,45 @@
         }
         .cta-button {
             display: inline-block;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
             color: white;
             padding: 0.95rem 1.6rem;
             font-size: 1rem;
             font-weight: 700;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.22);
         }
         .cta-button:hover {
-            background: var(--accent-hover);
+            background: linear-gradient(135deg, var(--accent-hover) 0%, #7c3aed 100%);
             transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
+            box-shadow: 0 16px 28px rgba(124, 58, 237, 0.28);
         }
         .cta-note { color: var(--text-light); font-size: 0.92rem; }
         .preview-card {
-            background: white;
-            border: 1px solid var(--border);
+            position: relative;
+            background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+            border: 1px solid rgba(124, 58, 237, 0.18);
             border-radius: 24px;
             padding: 1.35rem;
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
+            box-shadow: 0 24px 60px rgba(124, 58, 237, 0.14), 0 12px 28px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+        .preview-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 34%), radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.10), transparent 28%);
+            pointer-events: none;
         }
         .preview-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
         .pill {
             display: inline-block;
@@ -126,7 +142,9 @@
             font-weight: 700;
         }
         .mock-panel {
-            border: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(124, 58, 237, 0.12);
             border-radius: 18px;
             padding: 1rem;
             margin-top: 0.9rem;
@@ -136,23 +154,20 @@
             font-size: 1.02rem;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
-        .line { height: 11px; border-radius: 999px; background: #e2e8f0; margin-top: 0.55rem; }
-        .line.sm { width: 42%; }
-        .line.md { width: 66%; }
-        .line.lg { width: 88%; }
         .mini-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.85rem;
-            margin-top: 0.9rem;
+            margin-top: 0.2rem;
         }
         .mini-box {
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 0.85rem;
             background: white;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .mini-box strong {
             display: block;
@@ -161,6 +176,29 @@
             font-size: 0.95rem;
         }
         .mini-box span { color: var(--text-light); font-size: 0.84rem; }
+        .mini-box:hover,
+        .deliverable:hover,
+        .card:hover,
+        .stat:hover,
+        .step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(124, 58, 237, 0.10);
+            border-color: rgba(124, 58, 237, 0.24);
+        }
+        .problem-glow {
+            display: grid;
+            gap: 0.7rem;
+        }
+        .problem-pill {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border-radius: 12px;
+            background: rgba(124, 58, 237, 0.08);
+            border: 1px solid rgba(124, 58, 237, 0.14);
+            color: #5b21b6;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -174,6 +212,7 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1.25rem 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .stat-number {
             font-size: 1.9rem;
@@ -213,6 +252,7 @@
             padding: 1.35rem;
             border-radius: 14px;
             border: 1px solid var(--border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .card h3 {
             font-size: 1rem;
@@ -232,6 +272,7 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .deliverable h3 { color: var(--primary); margin-bottom: 0.45rem; font-size: 1rem; }
         .deliverable p { color: var(--text-light); font-size: 0.92rem; }
@@ -249,6 +290,7 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1.15rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .step-num {
             width: 58px;
@@ -286,6 +328,11 @@
         .compare-bad { background: #fff; }
         .compare-good { background: #fcfaff; }
         .compare-mobile-wrap { display: none; }
+        .compare-mobile-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
         .compare-mobile-card {
             background: white;
             border: 1px solid var(--border);
@@ -293,23 +340,36 @@
             padding: 1rem;
             box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
         }
-        .compare-mobile-card + .compare-mobile-card { margin-top: 0.85rem; }
         .compare-mobile-title {
             font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.7rem;
         }
-        .compare-mobile-title.bad { color: #991b1b; }
+        .compare-mobile-title.bad { color: var(--danger); }
         .compare-mobile-title.good { color: #5b21b6; }
+        .compare-list {
+            display: grid;
+            gap: 0.75rem;
+            color: var(--text);
+            font-size: 0.94rem;
+        }
+        .compare-list div {
+            padding: 0.7rem 0.75rem;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid var(--border);
+        }
+        .compare-list.good div { background: #fcfaff; }
         .price-box {
-            background: #111827;
+            background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
             color: white;
             border-radius: 20px;
             padding: 3rem 2rem;
             text-align: center;
             margin: 2rem 0 0;
+            box-shadow: 0 24px 48px rgba(15, 23, 42, 0.20);
         }
         .price-box h2 { font-size: 1.9rem; margin-bottom: 0.75rem; }
         .price-box p { color: #cbd5e1; margin-bottom: 1rem; max-width: 700px; margin-left:auto; margin-right:auto; }
@@ -342,7 +402,7 @@
         .waitlist-form input::placeholder { color: #94a3b8; }
         .waitlist-form input:focus { border-color: #a78bfa; background: rgba(255,255,255,0.15); }
         .waitlist-form button {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
             color: white;
             border: none;
             padding: 0.9rem 1.4rem;
@@ -352,8 +412,9 @@
             cursor: pointer;
             transition: all 0.2s;
             white-space: nowrap;
+            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.22);
         }
-        .waitlist-form button:hover { background: var(--accent-hover); }
+        .waitlist-form button:hover { background: linear-gradient(135deg, var(--accent-hover) 0%, #7c3aed 100%); }
         .form-message { margin-top: 0.75rem; font-size: 0.95rem; min-height: 1.2em; color: #94a3b8; }
         .privacy { color: #94a3b8; font-size: 0.8rem; margin-top: 0.9rem; }
         footer {
@@ -366,6 +427,7 @@
         @media (max-width: 860px) {
             .hero-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
+            .compare-mobile-columns { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
             .hero { padding: 4.5rem 0 3rem; }
@@ -425,9 +487,9 @@
                     <div class="mock-panel">
                         <div class="mock-title">Built to solve</div>
                         <div class="problem-glow">
-                            <span class="problem-pill">Missed onboarding steps</span>
-                            <span class="problem-pill">Scattered docs and emails</span>
-                            <span class="problem-pill">Clients unsure what happens next</span>
+                            <span class="problem-pill">Missed onboarding steps.</span>
+                            <span class="problem-pill">Scattered docs and emails.</span>
+                            <span class="problem-pill">Clients unsure what happens next.</span>
                         </div>
                     </div>
                 </div>
@@ -513,29 +575,25 @@
                 </div>
             </div>
             <div class="compare-mobile-wrap">
-                <div class="compare-mobile-card">
-                    <div class="compare-mobile-title bad">Without the kit</div>
-                    <div>You rebuild onboarding from memory every time a client signs.</div>
-                    <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
-                    <div>You duplicate one repeatable onboarding system and use it every time.</div>
-                </div>
-                <div class="compare-mobile-card">
-                    <div class="compare-mobile-title bad">Without the kit</div>
-                    <div>Contracts, invoices, notes, and next steps live in separate places.</div>
-                    <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
-                    <div>Important onboarding steps and assets stay organized in one structured workflow.</div>
-                </div>
-                <div class="compare-mobile-card">
-                    <div class="compare-mobile-title bad">Without the kit</div>
-                    <div>Clients ask what happens next because the process isn’t clear.</div>
-                    <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
-                    <div>Clients get clear communication, clear next steps, and a more polished first impression.</div>
-                </div>
-                <div class="compare-mobile-card">
-                    <div class="compare-mobile-title bad">Without the kit</div>
-                    <div>Kickoff prep and internal handoff feel ad hoc.</div>
-                    <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
-                    <div>Kickoff and delivery handoff happen with reusable templates and less confusion.</div>
+                <div class="compare-mobile-columns">
+                    <div class="compare-mobile-card">
+                        <div class="compare-mobile-title bad">Without the kit</div>
+                        <div class="compare-list">
+                            <div>You rebuild onboarding from memory every time a client signs.</div>
+                            <div>Contracts, invoices, notes, and next steps live in separate places.</div>
+                            <div>Clients ask what happens next because the process isn’t clear.</div>
+                            <div>Kickoff prep and internal handoff feel ad hoc.</div>
+                        </div>
+                    </div>
+                    <div class="compare-mobile-card">
+                        <div class="compare-mobile-title good">With Client Onboarding Kit</div>
+                        <div class="compare-list good">
+                            <div>You duplicate one repeatable onboarding system and use it every time.</div>
+                            <div>Important onboarding steps and assets stay organized in one structured workflow.</div>
+                            <div>Clients get clear communication, clear next steps, and a more polished first impression.</div>
+                            <div>Kickoff and delivery handoff happen with reusable templates and less confusion.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -603,27 +661,6 @@
       } else {
         if (msg) { msg.textContent = 'Something went wrong. Please try again.'; msg.style.color = '#fca5a5'; }
       }
-      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
-    });
-  });
-  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
-})();
-</script>
-</body>
-</html>
-      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
-    });
-  });
-  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
-})();
-</script>
-</body>
-</html>
-atlasSignupInit(form); });
-})();
-</script>
-</body>
-</html>
       if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
     });
   });
