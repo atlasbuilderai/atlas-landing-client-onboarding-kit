@@ -494,33 +494,25 @@
             <div class="compare-mobile-card">
                 <div class="compare-mobile-title bad">Without the kit</div>
                 <div>You rebuild onboarding from memory every time a client signs.</div>
-            </div>
-            <div class="compare-mobile-card">
-                <div class="compare-mobile-title good">With Client Onboarding Kit</div>
+                <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
                 <div>You duplicate one repeatable onboarding system and use it every time.</div>
             </div>
             <div class="compare-mobile-card">
                 <div class="compare-mobile-title bad">Without the kit</div>
                 <div>Contracts, invoices, notes, and next steps live in separate places.</div>
-            </div>
-            <div class="compare-mobile-card">
-                <div class="compare-mobile-title good">With Client Onboarding Kit</div>
+                <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
                 <div>Important onboarding steps and assets stay organized in one structured workflow.</div>
             </div>
             <div class="compare-mobile-card">
                 <div class="compare-mobile-title bad">Without the kit</div>
                 <div>Clients ask what happens next because the process isn’t clear.</div>
-            </div>
-            <div class="compare-mobile-card">
-                <div class="compare-mobile-title good">With Client Onboarding Kit</div>
+                <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
                 <div>Clients get clear communication, clear next steps, and a more polished first impression.</div>
             </div>
             <div class="compare-mobile-card">
                 <div class="compare-mobile-title bad">Without the kit</div>
                 <div>Kickoff prep and internal handoff feel ad hoc.</div>
-            </div>
-            <div class="compare-mobile-card">
-                <div class="compare-mobile-title good">With Client Onboarding Kit</div>
+                <div class="compare-mobile-title good" style="margin-top:0.9rem;">With Client Onboarding Kit</div>
                 <div>Kickoff and delivery handoff happen with reusable templates and less confusion.</div>
             </div>
         </section>
@@ -588,6 +580,14 @@
       } else {
         if (msg) { msg.textContent = 'Something went wrong. Please try again.'; msg.style.color = '#fca5a5'; }
       }
+      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
+    });
+  });
+  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
+})();
+</script>
+</body>
+</html>
       if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
     });
   });
