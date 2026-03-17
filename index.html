@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Onboarding Kit | A Cleaner Way to Onboard New Clients</title>
+    <meta name="description" content="A practical client onboarding kit for freelancers and boutique agencies. Replace scattered emails, docs, and checklists with one repeatable onboarding workflow.">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #7c3aed;
+            --accent-hover: #6d28d9;
+            --text: #334155;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --success: #16a34a;
+            --border: #e2e8f0;
+            --soft: #faf5ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+        .hero {
+            padding: 5.5rem 0 4rem;
+            background: linear-gradient(180deg, #faf5ff 0%, #f8fafc 100%);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.42rem 0.9rem;
+            background: #ede9fe;
+            color: #5b21b6;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.7rem);
+            font-weight: 800;
+            line-height: 1.04;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+        h1 span { color: var(--accent); }
+        .hero-copy p {
+            font-size: 1.12rem;
+            color: var(--text-light);
+            max-width: 620px;
+            margin-bottom: 1.4rem;
+        }
+        .hero-points {
+            display: grid;
+            gap: 0.55rem;
+            margin-bottom: 1.6rem;
+        }
+        .hero-points div { color: var(--text); font-size: 0.98rem; }
+        .cta-row {
+            display: flex;
+            gap: 0.85rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.95rem 1.6rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
+        }
+        .cta-note { color: var(--text-light); font-size: 0.92rem; }
+        .preview-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 1.35rem;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
+        }
+        .preview-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .pill {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: #ede9fe;
+            color: #5b21b6;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .price-pill {
+            background: #0f172a;
+            color: white;
+            padding: 0.45rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+        .mock-panel {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1rem;
+            margin-top: 0.9rem;
+            background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+        }
+        .mock-title {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .line { height: 11px; border-radius: 999px; background: #e2e8f0; margin-top: 0.55rem; }
+        .line.sm { width: 42%; }
+        .line.md { width: 66%; }
+        .line.lg { width: 88%; }
+        .mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            margin-top: 0.9rem;
+        }
+        .mini-box {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 0.85rem;
+            background: white;
+        }
+        .mini-box strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .mini-box span { color: var(--text-light); font-size: 0.84rem; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .stat {
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem 1rem;
+        }
+        .stat-number {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.45rem;
+        }
+        .section { padding: 4rem 0; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.4rem;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.02em;
+        }
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            background: var(--card);
+            padding: 1.35rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.45rem;
+        }
+        .card p { color: var(--text-light); font-size: 0.92rem; }
+        .check { color: var(--success); font-weight: 800; margin-right: 0.35rem; }
+        .deliverables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .deliverable {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem;
+        }
+        .deliverable h3 { color: var(--primary); margin-bottom: 0.45rem; font-size: 1rem; }
+        .deliverable p { color: var(--text-light); font-size: 0.92rem; }
+        .steps {
+            display: grid;
+            gap: 1rem;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .step {
+            display: grid;
+            grid-template-columns: 58px 1fr;
+            gap: 1rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.15rem;
+        }
+        .step-num {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            background: #ede9fe;
+            color: #5b21b6;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .step h3 { color: var(--primary); margin-bottom: 0.35rem; }
+        .step p { color: var(--text-light); }
+        .compare {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .compare-row > div {
+            padding: 1rem 1.1rem;
+            border-top: 1px solid var(--border);
+        }
+        .compare-head {
+            background: #f8fafc;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .compare-bad { background: #fff; }
+        .compare-good { background: #fcfaff; }
+        .price-box {
+            background: #111827;
+            color: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0 0;
+        }
+        .price-box h2 { font-size: 1.9rem; margin-bottom: 0.75rem; }
+        .price-box p { color: #cbd5e1; margin-bottom: 1rem; max-width: 700px; margin-left:auto; margin-right:auto; }
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+        .price small { font-size: 1rem; color: #cbd5e1; font-weight: 500; }
+        .waitlist-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 560px;
+            margin: 1.4rem auto 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .waitlist-form input {
+            flex: 1;
+            min-width: 220px;
+            padding: 0.9rem 1rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            outline: none;
+        }
+        .waitlist-form input::placeholder { color: #94a3b8; }
+        .waitlist-form input:focus { border-color: #a78bfa; background: rgba(255,255,255,0.15); }
+        .waitlist-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.4rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .waitlist-form button:hover { background: var(--accent-hover); }
+        .form-message { margin-top: 0.75rem; font-size: 0.95rem; min-height: 1.2em; color: #94a3b8; }
+        .privacy { color: #94a3b8; font-size: 0.8rem; margin-top: 0.9rem; }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        @media (max-width: 860px) {
+            .hero-grid, .compare-row { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .waitlist-form { flex-direction: column; }
+            .waitlist-form input, .waitlist-form button { width: 100%; }
+            .step { grid-template-columns: 1fr; }
+            .mini-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <span class="badge">For Freelancers & Boutique Agencies</span>
+                    <h1>Onboard New Clients <span>Without the Chaos</span></h1>
+                    <p>Client Onboarding Kit gives you a practical, repeatable onboarding system so you stop piecing together emails, checklists, portal pages, and kickoff steps from scratch every time a client says yes.</p>
+                    <div class="hero-points">
+                        <div><strong>✓ Save time:</strong> stop rebuilding the same onboarding process for every project</div>
+                        <div><strong>✓ Look more professional:</strong> give clients a cleaner start with clear next steps</div>
+                        <div><strong>✓ Reduce mistakes:</strong> keep contracts, intake, kickoff prep, and handoff organized in one flow</div>
+                    </div>
+                    <div class="cta-row">
+                        <a href="#early-access" class="cta-button">Lock In Founding Pricing →</a>
+                    </div>
+                    <p class="cta-note">Founding Edition: <strong>$49</strong> before public launch · future price <strong>$99</strong></p>
+                </div>
+                <div class="preview-card">
+                    <div class="preview-top">
+                        <span class="pill">Founding Edition</span>
+                        <span class="price-pill">$49 launch</span>
+                    </div>
+                    <div class="mock-panel">
+                        <div class="mock-title">What the buyer gets</div>
+                        <div class="line lg"></div>
+                        <div class="line md"></div>
+                        <div class="mini-grid">
+                            <div class="mini-box">
+                                <strong>Start Here + Quickstart</strong>
+                                <span>Fast setup guidance so the system is easy to implement.</span>
+                            </div>
+                            <div class="mini-box">
+                                <strong>Checklist + Templates</strong>
+                                <span>Intake, portal, email, kickoff, and handoff assets.</span>
+                            </div>
+                            <div class="mini-box">
+                                <strong>Example Client Setup</strong>
+                                <span>A worked example to make implementation more concrete.</span>
+                            </div>
+                            <div class="mini-box">
+                                <strong>Reusable SOP</strong>
+                                <span>A repeatable process you can use for every new client.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mock-panel">
+                        <div class="mock-title">Built to solve</div>
+                        <div class="line lg"></div>
+                        <div class="line lg"></div>
+                        <div class="line sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat"><div class="stat-number">10–15m</div><div class="stat-label">target setup time per new client once your base system exists</div></div>
+            <div class="stat"><div class="stat-number">1</div><div class="stat-label">repeatable workflow instead of scattered docs, emails, and memory</div></div>
+            <div class="stat"><div class="stat-number">$49</div><div class="stat-label">Founding Edition launch price</div></div>
+        </div>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>The problem</h2>
+                <p>For many freelancers and small agencies, onboarding still happens across random docs, invoice links, forgotten checklist items, and back-and-forth emails. That slows down delivery and makes the business feel less polished than it should.</p>
+            </div>
+            <div class="grid">
+                <div class="card"><h3>Scattered admin</h3><p>Client details, files, contracts, invoices, kickoff notes, and next steps live in different places.</p></div>
+                <div class="card"><h3>Repeated setup work</h3><p>You recreate the same onboarding flow every time instead of reusing one clean process.</p></div>
+                <div class="card"><h3>Missed steps</h3><p>Small but important tasks slip through: asset requests, kickoff prep, reminders, approvals, and handoff notes.</p></div>
+                <div class="card"><h3>Client confusion</h3><p>The client isn’t always sure what happens next, which creates extra friction and unnecessary questions.</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>What’s inside Client Onboarding Kit</h2>
+                <p>This is not bloated agency software. It’s a focused onboarding bundle built to help you create one reusable client-start workflow.</p>
+            </div>
+            <div class="deliverables">
+                <div class="deliverable"><h3><span class="check">✓</span>Start Here + Quickstart Guide</h3><p>A simple setup path so you can implement the kit quickly in Notion, Airtable, Docs, or your existing internal workflow.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Master Onboarding Checklist</h3><p>A stage-by-stage checklist covering deal closed, welcome/admin, internal setup, kickoff prep, and onboarding complete.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Client Intake Template</h3><p>A structured intake template to collect the details, assets, goals, and communication preferences you actually need.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Client Portal Template</h3><p>A clean client-facing page structure that shows what happens next, what’s needed, and where important links live.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Email Templates</h3><p>Ready-to-customize welcome, contract, invoice, asset request, kickoff, and onboarding-complete emails.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Kickoff + Handoff Templates</h3><p>Two simple operational templates that help the project move cleanly from signed deal to kickoff and then into delivery.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>SOP / Reuse Guide</h3><p>A short operating guide that shows you how to duplicate and reuse the system for every new client.</p></div>
+                <div class="deliverable"><h3><span class="check">✓</span>Example Client Setup</h3><p>A worked example so you can picture the system in practice instead of buying an abstract template pack.</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>Built to remove friction between “the client said yes” and “the project is ready to run.”</p>
+            </div>
+            <div class="steps">
+                <div class="step"><div class="step-num">01</div><div><h3>Set up your base onboarding workspace</h3><p>Use the kit to create one clean system in the tool you already use — instead of reinventing your process every time.</p></div></div>
+                <div class="step"><div class="step-num">02</div><div><h3>Run the onboarding checklist</h3><p>Move through welcome, admin, intake, kickoff prep, and communication steps in a consistent order.</p></div></div>
+                <div class="step"><div class="step-num">03</div><div><h3>Give the client clear next steps</h3><p>Use the portal template and email templates to reduce confusion and make the process feel professional from day one.</p></div></div>
+                <div class="step"><div class="step-num">04</div><div><h3>Hand off cleanly into delivery</h3><p>Use the kickoff and handoff templates so the project starts with context instead of confusion.</p></div></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Before vs after</h2>
+                <p>The value here is not “more software.” It’s a cleaner operating system for the first part of your client experience.</p>
+            </div>
+            <div class="compare">
+                <div class="compare-row compare-head">
+                    <div>Without the kit</div>
+                    <div>With Client Onboarding Kit</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-bad">You rebuild onboarding from memory every time a client signs.</div>
+                    <div class="compare-good">You duplicate one repeatable onboarding system and use it every time.</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-bad">Contracts, invoices, notes, and next steps live in separate places.</div>
+                    <div class="compare-good">Important onboarding steps and assets stay organized in one structured workflow.</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-bad">Clients ask what happens next because the process isn’t clear.</div>
+                    <div class="compare-good">Clients get clear communication, clear next steps, and a more polished first impression.</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-bad">Kickoff prep and internal handoff feel ad hoc.</div>
+                    <div class="compare-good">Kickoff and delivery handoff happen with reusable templates and less confusion.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="price-box" id="early-access">
+            <h2>Lock in founding-user pricing</h2>
+            <p>Join the early-access list for Client Onboarding Kit and lock in the Founding Edition price. This gives us a strong signal that the offer resonates before public launch.</p>
+            <div class="price">$49 <small>launch price · future price $99</small></div>
+            <form class="waitlist-form native-signup-form" onsubmit="return atlasSignupSubmit(this)">
+                <input type="hidden" name="experiment" value="client-onboarding-kit">
+                <input type="hidden" name="source" value="client-onboarding-kit">
+                <input type="hidden" name="pricing" value="$49-launch-$99-future">
+                <input type="hidden" name="cta" value="early-access">
+                <input type="hidden" name="page_url" value="">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Get Early Access</button>
+            </form>
+            <p class="form-message" aria-live="polite"></p>
+            <p class="privacy">No spam. Just launch details and early-access updates.</p>
+        </section>
+    </div>
+
+    <footer><div class="container"><p>© 2026 Client Onboarding Kit — built for service businesses that want a cleaner start.</p></div></footer>
+
+<script>
+(function(){
+  function randomId(){ return 'signup_target_' + Math.random().toString(36).slice(2); }
+  window.atlasSignupMap = window.atlasSignupMap || {};
+  window.atlasSignupInit = function(form){
+    if (!form || form.dataset.signupReady === '1') return;
+    form.dataset.signupReady = '1';
+    const iframeName = randomId();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    form.target = iframeName;
+    form.action = 'https://atlas-signups-worker.business-risc.workers.dev/api/signup';
+    form.method = 'POST';
+    const pageField = form.querySelector('input[name="page_url"]');
+    if (pageField) pageField.value = window.location.href;
+    window.atlasSignupMap[iframeName] = form;
+  };
+  window.atlasSignupSubmit = function(form){
+    window.atlasSignupInit(form);
+    const msg = form.parentElement.querySelector('.form-message') || form.nextElementSibling;
+    const button = form.querySelector('button[type="submit"]');
+    if (button) { button.disabled = true; button.textContent = 'Submitting...'; }
+    if (msg) { msg.textContent = 'Submitting...'; msg.style.color = '#94a3b8'; }
+    return true;
+  };
+  window.addEventListener('message', function(e){
+    if (!e.data || (e.data.type !== 'atlas-signup-success' && e.data.type !== 'atlas-signup-error')) return;
+    const frames = Object.keys(window.atlasSignupMap || {});
+    frames.forEach(function(name){
+      const form = window.atlasSignupMap[name];
+      if (!form) return;
+      const msg = form.parentElement.querySelector('.form-message') || form.nextElementSibling;
+      const button = form.querySelector('button[type="submit"]');
+      if (e.data.type === 'atlas-signup-success') {
+        form.reset();
+        const pageField = form.querySelector('input[name="page_url"]');
+        if (pageField) pageField.value = window.location.href;
+        if (msg) { msg.textContent = "Thanks — you're on the early-access list."; msg.style.color = '#86efac'; }
+      } else {
+        if (msg) { msg.textContent = 'Something went wrong. Please try again.'; msg.style.color = '#fca5a5'; }
+      }
+      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
+    });
+  });
+  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
+})();
+</script>
+</body>
+</html>
