@@ -364,14 +364,17 @@
             border-top: 1px solid var(--border);
         }
         @media (max-width: 860px) {
-            .hero-grid, .compare-row { grid-template-columns: 1fr; }
+            .hero-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
+            .hero { padding: 4.5rem 0 3rem; }
             .waitlist-form { flex-direction: column; }
             .waitlist-form input, .waitlist-form button { width: 100%; }
             .step { grid-template-columns: 1fr; }
             .mini-grid { grid-template-columns: 1fr; }
+            .compare { display: none !important; }
+            .compare-mobile-wrap { display: block; }
         }
     </style>
 </head>
