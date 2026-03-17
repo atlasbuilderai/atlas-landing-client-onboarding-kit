@@ -285,6 +285,24 @@
         }
         .compare-bad { background: #fff; }
         .compare-good { background: #fcfaff; }
+        .compare-mobile-wrap { display: none; }
+        .compare-mobile-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+        }
+        .compare-mobile-card + .compare-mobile-card { margin-top: 0.85rem; }
+        .compare-mobile-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+        .compare-mobile-title.bad { color: #991b1b; }
+        .compare-mobile-title.good { color: #5b21b6; }
         .price-box {
             background: #111827;
             color: white;
@@ -382,8 +400,6 @@
                     </div>
                     <div class="mock-panel">
                         <div class="mock-title">What the buyer gets</div>
-                        <div class="line lg"></div>
-                        <div class="line md"></div>
                         <div class="mini-grid">
                             <div class="mini-box">
                                 <strong>Start Here + Quickstart</strong>
@@ -405,9 +421,11 @@
                     </div>
                     <div class="mock-panel">
                         <div class="mock-title">Built to solve</div>
-                        <div class="line lg"></div>
-                        <div class="line lg"></div>
-                        <div class="line sm"></div>
+                        <div class="problem-glow">
+                            <span class="problem-pill">Missed onboarding steps</span>
+                            <span class="problem-pill">Scattered docs and emails</span>
+                            <span class="problem-pill">Clients unsure what happens next</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -584,6 +602,19 @@
     });
   });
   document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
+})();
+</script>
+</body>
+</html>
+      if (button) { button.disabled = false; button.textContent = 'Get Early Access'; }
+    });
+  });
+  document.querySelectorAll('.native-signup-form').forEach(function(form){ window.atlasSignupInit(form); });
+})();
+</script>
+</body>
+</html>
+atlasSignupInit(form); });
 })();
 </script>
 </body>
